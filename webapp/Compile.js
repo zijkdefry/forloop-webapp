@@ -4,6 +4,12 @@
 // assign: '=' in the second word
 // declare + assign: '=' in the third word
 
+const stmtUnknown = 0
+const stmtPrint = 1
+const stmtDeclare = 2
+const stmtAssign = 3
+const stmtDeclareAssign = 4
+
 const getTypeOfStatement = stmt => {
     if (stmt.startsWith("System.out.println(")) { return stmtPrint }
 
@@ -106,7 +112,7 @@ const compile = () => {
         return null
     }
 
-    let parsedForBody = parseStmts(forBody.value, "before")
+    let parsedForBody = parseStmts(forBody.value, "body")
     if (!parsedForBody) {
         return null
     }
