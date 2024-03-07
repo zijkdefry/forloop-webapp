@@ -20,10 +20,13 @@ public class WebServer {
         var resourceName = getPath(req);
 
         if (resourceName.isEmpty()) resourceName = "index.html";
-
-        if (!Resource.has(resourceName)) serveNotFount(out, resourceName);
         
         var resource = Resource.get(resourceName);
+
+        if (resource == null) {
+            serveNotFount(out, resourceName);
+            return;
+        }
 
         out.println("HTTP/1.1 200 OK");
         out.printf("Content-Type: %s\n", resource.type);
@@ -34,20 +37,24 @@ public class WebServer {
     private static ServerSocket server;
 
     public static void run() throws IOException {
-        server = new ServerSocket(8080, 5);
+        try {
+            server = new ServerSocket(8080, 5);
 
-        while (true) {
-            var client = server.accept();
+            while (true) {
+                var client = server.accept();
 
-            var input = new BufferedReader(new InputStreamReader(client.getInputStream()));
-            var request = input.readLine();
+                var input = new BufferedReader(new InputStreamReader(client.getInputStream()));
+                var request = input.readLine();
 
-            var output = new PrintStream(client.getOutputStream());
-            serve(request, output);
+                var output = new PrintStream(client.getOutputStream());
+                serve(request, output);
 
-            output.close();
-            input.close();
-            client.close();
+                output.close();
+                input.close();
+                client.close();
+            }
+        } finally {
+            System.out.println("Shutdown");
         }
     }
 }
