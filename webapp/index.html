@@ -2,9 +2,38 @@
 
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <style>
+            * {
+                font-family: monospace;
+            }
+        </style>
     </head>
     <body>
-        <h1>HELLO, WORLD!</h1>
+        <p>Scanner scn = new Scanner(System.in);</p>
+        <textarea id="for-exec"></textarea>
+        <div>
+            <span>for (</span>
+            <input id="for-init">
+            <span>;</span>
+            <input id="for-cond">
+            <span>;</span>
+            <input id="for-iter">
+            <span>) {</span>
+        </div>
+        <div style="margin-left: 2.5em;">
+            <textarea id="for-body"></textarea>
+        </div>
+        <div>
+            <span>}</span>
+        </div>
+
+        <div>
+            <button>Run code</button>
+        </div>
     </body>
+
+    <script src="Setup.js"></script>
+    <script src="UI.js"></script>
+    <script src="Compile.js"></script>
+    <script src="Runtime.js"></script>
 </html>
