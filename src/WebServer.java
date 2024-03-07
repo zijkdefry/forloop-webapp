@@ -17,18 +17,18 @@ public class WebServer {
     }
 
     private static void serve(String req, PrintStream out) {
-        var resource = getPath(req);
+        var resourceName = getPath(req);
 
-        if (resource.isEmpty()) resource = "index.html";
+        if (resourceName.isEmpty()) resourceName = "index.html";
 
-        if (!Resources.has(resource)) serveNotFount(out, resource);
+        if (!Resource.has(resourceName)) serveNotFount(out, resourceName);
         
-        var item = Resources.get(resource);
+        var resource = Resource.get(resourceName);
 
         out.println("HTTP/1.1 200 OK");
-        out.printf("Content-Type: %s\n", item.type);
+        out.printf("Content-Type: %s\n", resource.type);
         out.println();
-        out.println(item.nameContent);
+        out.println(resource.content);
     }
 
     private static ServerSocket server;
@@ -40,10 +40,10 @@ public class WebServer {
             var client = server.accept();
 
             var input = new BufferedReader(new InputStreamReader(client.getInputStream()));
-            var req = input.readLine();
+            var request = input.readLine();
 
             var output = new PrintStream(client.getOutputStream());
-            serve(req, output);
+            serve(request, output);
 
             output.close();
             input.close();
