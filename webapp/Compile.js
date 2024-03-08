@@ -9,6 +9,7 @@ const stmtPrint = 1
 const stmtDeclare = 2
 const stmtAssign = 3
 const stmtDeclareAssign = 4
+const stmtEmpty = 5
 
 const getTypeOfStatement = stmt => {
     if (stmt.startsWith("System.out.println(")) { return stmtPrint }
@@ -58,6 +59,10 @@ const parseDeclareAssign = stmt => {
 }
 
 const parse = stmt => {
+    if (stmt.trim().length == 0) {
+        return { stmtType: stmtEmpty }
+    }
+    
     switch (getTypeOfStatement(stmt)) {
         case stmtUnknown:
             return null
@@ -71,8 +76,9 @@ const parse = stmt => {
             return parseDeclareAssign(stmt)
     }
 }
-
 const parseStmts = (raw, loc) => {
+    if (raw.trim().length == 0) { return [] }
+    
     let lines = raw.split("\n")
 
     let stmts = []

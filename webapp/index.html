@@ -6,6 +6,10 @@
             * {
                 font-family: monospace;
             }
+
+            .vis {
+                margin-bottom: 1em;
+            }
         </style>
     </head>
     <body>
@@ -23,12 +27,28 @@
         <div style="margin-left: 2.5em;">
             <textarea id="for-body"></textarea>
         </div>
+
         <div>
             <span>}</span>
         </div>
 
         <div>
-            <button onclick="stepState()">Run code</button>
+            <button onclick="initialise()">Compile</button>
+            <button onclick="stepState()">Step</button>
+        </div>
+
+        <hr>
+
+        <div id="var-dump" class="vis">
+            Program State: <br>
+        </div>
+
+        <div id="cond-check" class="vis">
+            condition cannot be determined yet
+        </div>
+
+        <div id="console" class="vis">
+            Console: <br>
         </div>
     </body>
 
