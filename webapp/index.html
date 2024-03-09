@@ -1,58 +1,117 @@
 <!DOCTYPE html>
+<html lang="en">
 
-<html>
-    <head>
-        <style>
-            * {
-                font-family: monospace;
-            }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Java Loop Visualizer</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: monospace;
+    }
 
-            .vis {
-                margin-bottom: 1em;
-            }
-        </style>
-    </head>
-    <body>
-        <p>Scanner scn = new Scanner(System.in);</p>
-        <textarea id="for-exec"></textarea>
-        <div>
-            <span>for (</span>
-            <input id="for-init">
-            <span>;</span>
-            <input id="for-cond">
-            <span>;</span>
-            <input id="for-iter">
-            <span>) {</span>
+    .container {
+      background-color: #ffffff;
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 50px;
+    }
+
+    .code-section {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+
+    .code-section label {
+      margin-bottom: 5px;
+    }
+
+    .for-loop-inputs {
+      display: flex;
+      align-items: center;
+    }
+
+    .for-loop-inputs label,
+    .for-loop-inputs input {
+      margin: 5px;
+    }
+
+    .vis {
+      margin-bottom: 1em;
+    }
+  </style>
+</head>
+
+<body class="container">
+
+  <h2 class="text-center mb-4">Java Loop Visualizer</h2>
+
+  <div class="code-section">
+    <label for="for-exec">Scanner scn = new Scanner(System.in);</label>
+    <textarea id="for-exec" class="form-control"></textarea>
+  </div>
+
+  <div class="code-section">
+    <label>for (</label>
+    <div class="for-loop-inputs">
+      <input id="for-init" class="form-control">
+      <label>;</label>
+      <input id="for-cond" class="form-control">
+      <label>;</label>
+      <input id="for-iter" class="form-control">
+    </div>
+    <label>) {</label>
+  </div>
+
+  <div class="code-section">
+    <label for="for-body">Body:</label>
+    <textarea id="for-body" class="form-control"></textarea>
+  </div>
+  <label>}</label>
+
+  <div class="text-center vis">
+    <button onclick="initialise()" class="btn btn-primary mr-2">Compile</button>
+    <button onclick="stepState()" class="btn btn-success">Step</button>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card bg-light border-primary mb-3">  <div class="card-header text-primary">Program State:</div>
+        <div class="card-body" id="var-dump">
         </div>
-        <div style="margin-left: 2.5em;">
-            <textarea id="for-body"></textarea>
+      </div>
+      
+      <div class="card bg-light" id="condition-check">
+        <div class="card-header text-success" id="cond-check-title">Condition Check:</div>
+        <div class="card-body" id="cond-check">
+          <p class="text-center">Condition cannot be determined yet</p>
         </div>
-
-        <div>
-            <span>}</span>
+      </div>
+    </div>
+    
+    <div class="col-md-6">
+      <div class="card bg-light">
+        <div class="card-header">Console:</div>
+        <div class="card-body" id="console">
         </div>
+      </div>
+    </div>
+  </div>
+  
+  
 
-        <div>
-            <button onclick="initialise()">Compile</button>
-            <button onclick="stepState()">Step</button>
-        </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="UI.js"></script>
+  <script src="Compile.js"></script>
+  <script src="Runtime.js"></script>
+</body>
 
-        <hr>
-
-        <div id="var-dump" class="vis">
-            Program State: <br>
-        </div>
-
-        <div id="cond-check" class="vis">
-            condition cannot be determined yet
-        </div>
-
-        <div id="console" class="vis">
-            Console: <br>
-        </div>
-    </body>
-
-    <script src="UI.js"></script>
-    <script src="Compile.js"></script>
-    <script src="Runtime.js"></script>
 </html>

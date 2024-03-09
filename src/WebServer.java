@@ -37,24 +37,20 @@ public class WebServer {
     private static ServerSocket server;
 
     public static void run() throws IOException {
-        try {
-            server = new ServerSocket(8080, 5);
+        server = new ServerSocket(8080, 5);
 
-            while (true) {
-                var client = server.accept();
+        while (true) {
+            var client = server.accept();
 
-                var input = new BufferedReader(new InputStreamReader(client.getInputStream()));
-                var request = input.readLine();
+            var input = new BufferedReader(new InputStreamReader(client.getInputStream()));
+            var request = input.readLine();
 
-                var output = new PrintStream(client.getOutputStream());
-                serve(request, output);
+            var output = new PrintStream(client.getOutputStream());
+            serve(request, output);
 
-                output.close();
-                input.close();
-                client.close();
-            }
-        } finally {
-            System.out.println("Shutdown");
+            output.close();
+            input.close();
+            client.close();
         }
     }
 }
