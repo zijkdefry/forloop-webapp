@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <style>
+      * {
+        font-family: monospace;
+      }
+
+      .indent {
+        margin-left: 2em;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="index.html">Go to Loop Visualiser</a>
+
+    <hr>
+
+    <div>Scanner scn = new Scanner(System.in);</div>
+
+    <div>
+      <input> searchValue = <input>;
+    </div>
+
+    <div>
+      <input>
+      <span>[] arr = {</span>
+      <input>
+      <span>}</span>
+    </div>
+
+    <div>int numMatches = 0;</div>
+
+    <hr>
+    <div style="color: green;">// Main for loop</div>
+
+    <div>
+      for (
+        <span>int i = 0;</span>
+        <span>i < arr.length;</span>
+        <span>i++</span>
+      ) {
+    </div>
+    
+    <div class="indent">
+      if (
+        <span>arr[i] == searchValue</span>
+      ) {
+      <div class="indent">
+        System.out.println("Search found! " + arr[i]);<br>
+        numMatches = numMatches + 1;
+      </div>
+      }
+    </div>
+
+    <div>}</div>
+    
+    <div>
+      <button>Start</button>
+      <button>Stop</button>
+    </div>
+
+    <hr>
+
+    <div>
+      Program State:
+      <div>
+        searchValue = <span>N/A</span><br>
+        arr = <span>N/A</span><br>
+        i = <span>N/A</span><br>
+        arr[i] = <span>N/A</span><br>
+        arr[i] == searchValue is <span>N/A</span><br>
+        arr.length = <span>N/A</span><br>
+        i < arr.length is <span>N/A</span><br>
+      </div>
+    </div>
+
+    <hr>
+
+    <div>
+      Console:
+      <div></div>
+    </div>
+  </body>
+</html>

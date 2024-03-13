@@ -8,8 +8,8 @@ public class WebServer {
     private static String getPath(String httpRequest) {
         return httpRequest.replaceAll("GET /", "").replaceAll(" HTTP/1.1", "");
     }
-
-    private static void serveNotFount(PrintStream out, String notFoundResource) {
+    
+    private static void serveNotFound(PrintStream out, String notFoundResource) {
         out.println("HTTP/1.1 404 Not Found");
         out.println("Content-Type: text");
         out.println();
@@ -24,7 +24,7 @@ public class WebServer {
         var resource = Resource.get(resourceName);
 
         if (resource == null) {
-            serveNotFount(out, resourceName);
+            serveNotFound(out, resourceName);
             return;
         }
 
