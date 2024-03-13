@@ -20,13 +20,13 @@
     <div>Scanner scn = new Scanner(System.in);</div>
 
     <div>
-      <input> searchValue = <input>;
+      <input> searchValue = <input id="val-search">;
     </div>
 
     <div>
       <input>
       <span>[] arr = {</span>
-      <input>
+      <input id="val-arr">
       <span>}</span>
     </div>
 
@@ -37,17 +37,17 @@
 
     <div>
       for (
-        <span>int i = 0;</span>
-        <span>i < arr.length;</span>
-        <span>i++</span>
+        <span id="int-i-eq-0">int i = 0;</span>
+        <span id="i-lt-arr-length">i < arr.length;</span>
+        <span id="inc-i">i++</span>
       ) {
     </div>
     
     <div class="indent">
       if (
-        <span>arr[i] == searchValue</span>
+        <span id="arr-i-eq-search">arr[i] == searchValue</span>
       ) {
-      <div class="indent">
+      <div class="indent" id="code-found">
         System.out.println("Search found! " + arr[i]);<br>
         numMatches = numMatches + 1;
       </div>
@@ -55,10 +55,18 @@
     </div>
 
     <div>}</div>
+
+    <div>
+      if (<span id="matches-eq-0">numMatches == 0</span>) {
+      <div class="indent">
+        <span id="print-not-found">System.out.println("Nothing found");</span>
+      </div>
+      }
+    </div>
     
     <div>
-      <button>Start</button>
-      <button>Stop</button>
+      <button onclick="initialise()">Start</button>
+      <button onclick="step()">Step</button>
     </div>
 
     <hr>
@@ -66,13 +74,14 @@
     <div>
       Program State:
       <div>
-        searchValue = <span>N/A</span><br>
-        arr = <span>N/A</span><br>
-        i = <span>N/A</span><br>
-        arr[i] = <span>N/A</span><br>
-        arr[i] == searchValue is <span>N/A</span><br>
-        arr.length = <span>N/A</span><br>
-        i < arr.length is <span>N/A</span><br>
+        searchValue = <span id="pst-search">N/A</span><br>
+        arr = <span id="pst-arr">N/A</span><br>
+        i = <span id="pst-i">N/A</span><br>
+        arr[i] = <span id="pst-arr-i">N/A</span><br>
+        arr[i] == searchValue is <span id="pst-search-cond">N/A</span><br>
+        numMatches = <span id="pst-matches">N/A</span><br>
+        arr.length = <span id="pst-length">N/A</span><br>
+        i < arr.length is <span id="pst-for-cond">N/A</span><br>
       </div>
     </div>
 
@@ -80,7 +89,10 @@
 
     <div>
       Console:
-      <div></div>
+      <div id="console"></div>
     </div>
   </body>
+
+  <script src="searchUI.js"></script>
+  <script src="searchRun.js"></script>
 </html>
