@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Visualizer</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    .container {
+      background-color: #ffffff;
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+
+    .code-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .search-inputs {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .vis {
+      margin-bottom: 1rem;
+    }
+
+    pre {
+      background-color: #f8f9fa;
+      padding: 1rem;
+      border-radius: 0.5rem;
+    }
+
+    .card {
+      border: none;
+      box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+      background-color: #343a40;
+      color: #ffffff;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body class="container">
+  <h2 class="text-center mb-4">Search Visualizer</h2>
+
+  <div class="code-section">
+    <pre>Scanner scn = new Scanner(System.in);</pre>
+  </div>
+
+  <div class="code-section">
+    <div class="search-inputs">
+      <div class="input-group">
+        <input type="text" class="form-control " placeholder="Data Type" style="max-width: 115px;">
+        <div class="input-group-append">
+          <span class="input-group-text bg-secondary text-white">searchValue =</span>
+        </div>
+        <input id="val-search" type="text" class="form-control " placeholder="Enter search value">
+        <div class="input-group-append">
+          <span class="input-group-text bg-secondary text-white">;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="code-section">
+    <div class="search-inputs">
+      <div class="input-group">
+        <input type="text" class="form-control " placeholder="Data Type" style="max-width: 115px;">
+        <div class="input-group-prepend">
+          <span class="input-group-text bg-secondary text-white">[] arr = {</span>
+        </div>
+        <input id="val-arr" type="text" class="form-control" placeholder="Enter array values separated by commas">
+        <div class="input-group-append">
+          <span class="input-group-text bg-secondary text-white">}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="code-section">
+    <pre>int numMatches = 0;</pre>
+  </div>
+
+  <pre class="text-success mb-3">// Main for loop</pre>
+
+  <pre>for ( <span id="int-i-eq-0">int i = 0;</span> <span id="i-lt-arr-length">i < arr.length;</span> <span id="inc-i">i++</span> ) {</pre>
+
+  <div class="ml-4">
+    <pre>if ( <span id="arr-i-eq-search">arr[i] == searchValue</span> ) {</pre>
+    <div class="ml-4" id="code-found">
+      <pre>System.out.println("Search found! " + arr[i]);<br>numMatches = numMatches + 1;</pre>
+    </div>
+    <pre>}</pre>
+  </div>
+
+  <pre>}</pre>
+
+  <pre>if (<span id="matches-eq-0">numMatches == 0</span>) {</pre>
+  <div class="ml-4">
+    <pre id="print-not-found">System.out.println("Nothing found");</pre>
+  </div>
+  <pre>}</pre>
+
+  <div class="text-center vis">
+    <button onclick="initialise()" class="btn btn-primary mr-2">Compile</button>
+    <button onclick="step()" class="btn btn-success">Step</button>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card mb-3">
+        <div class="card-header">Program State</div>
+        <div class="card-body" id="var-dump">
+          <div>
+            searchValue = <span id="pst-search">N/A</span><br>
+            arr = <span id="pst-arr">N/A</span><br>
+            i = <span id="pst-i">N/A</span><br>
+            arr[i] = <span id="pst-arr-i">N/A</span><br>
+            arr[i] == searchValue is <span id="pst-search-cond">N/A</span><br>
+            numMatches = <span id="pst-matches">N/A</span><br>
+            arr.length = <span id="pst-length">N/A</span><br>
+            i < arr.length is <span id="pst-for-cond">N/A</span><br>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">Console</div>
+        <div class="card-body" id="console"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="searchUI.js"></script>
+  <script src="searchRun.js"></script>
+</body>
+</html>
